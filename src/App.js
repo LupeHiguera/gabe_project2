@@ -1,14 +1,15 @@
+import React from "react";
 import './App.css';
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
+import { Account } from "./Components/Account";
 
-
-function App() {
+const App = () => {
     return(
-        <div>
+        <Account>
             <Signup/>
             <Login/>
-        </div>
+        </Account>
     )
 }
 
