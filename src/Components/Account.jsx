@@ -11,17 +11,16 @@ const Account = (props) => {
             if (user) {
                 user.getSession((err, session) => {
                     if (err) {
-                        reject();
+                        reject("Failed to get session: " + err);
                     } else {
                         resolve(session);
                     }
                 });
                 } else {
-                reject();
+                reject("No current user");
             }
-        })
-    }
-
+        });
+    };
     const authenticate = async (Username, Password) => {
         await new Promise((resolve, reject) =>{
             const user = new CognitoUser({Username, Pool});
@@ -44,8 +43,15 @@ const Account = (props) => {
             })
         });
     };
+    const logout = () => {
+        const user = Pool.getCurrentUser();
+        if (user){
+            user.signOut();
+        }
+    }
+
     return (
-        <AccountContext.Provider value={{authenticate, getSession}}>
+        <AccountContext.Provider value={{authenticate, getSession, logout}}>
         {props.children}
     </AccountContext.Provider>
     );

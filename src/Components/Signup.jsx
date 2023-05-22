@@ -4,6 +4,7 @@ import UserPool from "./UserPool";
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    let [user, setNewUser] = useState("");
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -12,6 +13,8 @@ const Signup = () => {
             if(err) {
                 console.error(err);
             }
+            setNewUser = data.user;
+            // Pass New User to a sign in
             console.log(data);
         })
     };
