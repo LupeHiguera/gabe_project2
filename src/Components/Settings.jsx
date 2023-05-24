@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
 import { AccountContext } from "./Account";
-import changePassword from "./ChangePassword";
 import ChangePassword from "./ChangePassword";
 
 export default () => {
@@ -11,7 +10,7 @@ export default () => {
     useEffect(() => {
         getSession().then(() => {
             setLoggedIn(true);
-        })
+        }, setLoggedIn(false))
     }, []);
 
     return (
